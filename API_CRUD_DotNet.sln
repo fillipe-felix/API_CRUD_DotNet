@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Business", "src\DevIO.Business\DevIO.Business.csproj", "{30A26FF5-773A-4533-99B9-A6B3445ACCAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Data", "src\DevIO.Data\DevIO.Data.csproj", "{7DDC8226-88CE-4A21-BE22-C4B08907F01B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30A26FF5-773A-4533-99B9-A6B3445ACCAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A26FF5-773A-4533-99B9-A6B3445ACCAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A26FF5-773A-4533-99B9-A6B3445ACCAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A26FF5-773A-4533-99B9-A6B3445ACCAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDC8226-88CE-4A21-BE22-C4B08907F01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDC8226-88CE-4A21-BE22-C4B08907F01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDC8226-88CE-4A21-BE22-C4B08907F01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDC8226-88CE-4A21-BE22-C4B08907F01B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
