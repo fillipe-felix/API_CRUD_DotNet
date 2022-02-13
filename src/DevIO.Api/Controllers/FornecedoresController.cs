@@ -16,7 +16,8 @@ public class FornecedoresController : MainController
     private readonly IMapper _mapper;
 
     protected FornecedoresController(IFornecedorRepository fornecedorRepository, 
-                                     IMapper mapper, IFornecedorService fornecedorService)
+                                     IMapper mapper, IFornecedorService fornecedorService,
+                                     INotificador notificador) : base(notificador)
     {
         _fornecedorRepository = fornecedorRepository;
         _mapper = mapper;
@@ -49,18 +50,13 @@ public class FornecedoresController : MainController
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest();
+            return CustomReponse(ModelState);
         }
 
         var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
-        var result = await _fornecedorService.Adicionar(fornecedor);
+        await _fornecedorService.Adicionar(fornecedor);
 
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return Ok(fornecedor);
+        return CustomReponse(fornecedorViewModel);
     }
     
     [HttpPut("{id:guid}")]
@@ -69,43 +65,34 @@ public class FornecedoresController : MainController
     {
         if (id != fornecedorViewModel.Id)
         {
-            return BadRequest();
+            NotificarErro("O id informado não é o mesmo que foi passado na query");
+            return CustomReponse(fornecedorViewModel);
         }
         
         if (!ModelState.IsValid)
         {
-            return BadRequest();
+            return CustomReponse(ModelState);
         }
 
         var fornecedor = _mapper.Map<Fornecedor>(fornecedorViewModel);
-        var result = await _fornecedorService.Atualizar(fornecedor);
-
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return Ok(fornecedor);
+        await _fornecedorService.Atualizar(fornecedor);
+        
+        return CustomReponse(fornecedorViewModel);;
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Excluir([FromRoute(Name = "id")] Guid id)
     {
-        var fornecedor = await ObterFornecedoEndereco(id);
+        var fornecedorViewModel = await ObterFornecedoEndereco(id);
 
-        if (fornecedor == null)
+        if (fornecedorViewModel == null)
         {
             return NotFound();
         }
 
-        var result = await _fornecedorService.Remover(id);
+        await _fornecedorService.Remover(id);
 
-        if (!result)
-        {
-            return BadRequest();
-        }
-
-        return Ok(fornecedor);
+        return CustomReponse();
     }
 
     public async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
