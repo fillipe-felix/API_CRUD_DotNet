@@ -1,4 +1,5 @@
 ﻿using DevIO.Api.Data;
+using DevIO.Api.Extensions;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ public static class IdentityConfig
         services.AddIdentityCore<IdentityUser>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddErrorDescriber<IdentityMensagensPortugues>()
             .AddDefaultTokenProviders();
         
         return services;
