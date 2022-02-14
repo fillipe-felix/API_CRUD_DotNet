@@ -30,6 +30,7 @@ public class FornecedoresController : MainController
         _enderecoRepository = enderecoRepository;
     }
 
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> ObterTodos()
     {
