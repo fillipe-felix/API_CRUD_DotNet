@@ -24,18 +24,7 @@ builder.Services.ResolveDependencies();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
-builder.Services.Configure<ApiBehaviorOptions>(options =>
-{
-    options.SuppressModelStateInvalidFilter = true;
-});
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("Development", builder => builder.AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
-    //.AllowCredentials());
-});
+builder.Services.WebApiConfig();
 
 
     
@@ -47,10 +36,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    app.UseHsts();
+}
 
-app.UseHttpsRedirection();
-
-app.UseCors("Development");
+app.UseMvcConfiguration();
 
 app.UseAuthentication();
 app.UseAuthorization();
