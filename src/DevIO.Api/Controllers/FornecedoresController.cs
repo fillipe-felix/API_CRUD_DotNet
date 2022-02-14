@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 
+using DevIO.Api.Extensions;
 using DevIO.Api.ViewModels;
 using DevIO.Business.Intefaces;
 using DevIO.Business.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DevIO.Api.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 public class FornecedoresController : MainController
 {
@@ -48,6 +51,7 @@ public class FornecedoresController : MainController
         return Ok(fornecedor);
     }
 
+    [ClaimsAuthorize("Fornecedor", "Adicionar")]
     [HttpPost]
     public async Task<IActionResult> Adicionar([FromBody] FornecedorViewModel fornecedorViewModel)
     {
@@ -62,6 +66,7 @@ public class FornecedoresController : MainController
         return CustomReponse(fornecedorViewModel);
     }
     
+    [ClaimsAuthorize("Fornecedor", "Atualizar")]
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Atualizar([FromRoute(Name = "id")] Guid id, 
                                                [FromBody] FornecedorViewModel fornecedorViewModel)
@@ -83,6 +88,7 @@ public class FornecedoresController : MainController
         return CustomReponse(fornecedorViewModel);;
     }
 
+    [ClaimsAuthorize("Fornecedor", "Excluir")]
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Excluir([FromRoute(Name = "id")] Guid id)
     {
@@ -105,6 +111,7 @@ public class FornecedoresController : MainController
         return Ok(enderecoViewModel);
     }
     
+    [ClaimsAuthorize("Fornecedor", "Atualizar")]
     [HttpPut("atualizar-endereco/{id:guid}")]
     public async Task<IActionResult> AtualizarEndereco([FromRoute(Name = "id")] Guid id, 
                                                [FromBody] EnderecoViewModel enderecoViewModel)
