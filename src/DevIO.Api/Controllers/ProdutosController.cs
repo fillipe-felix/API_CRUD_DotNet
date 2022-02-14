@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DevIO.Api.Controllers;
 
-[Microsoft.AspNetCore.Components.Route("api/[controller]")]
+[Route("api/[controller]")]
 public class ProdutosController : MainController
 {
     private readonly IProdutoRepository _produtoRepository;

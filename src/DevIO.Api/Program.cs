@@ -18,6 +18,8 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddIdentityConfiguration(builder.Configuration);
+
 builder.Services.ResolveDependencies();
 
 builder.Services.AddAutoMapper(typeof(Program));
@@ -31,8 +33,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Development", builder => builder.AllowAnyOrigin()
         .AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowCredentials());
+        .AllowAnyHeader());
+    //.AllowCredentials());
 });
 
 

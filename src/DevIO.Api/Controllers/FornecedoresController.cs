@@ -126,12 +126,12 @@ public class FornecedoresController : MainController
         return CustomReponse(enderecoViewModel);;
     }
 
-    public async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
+    private async Task<FornecedorViewModel> ObterFornecedorProdutosEndereco(Guid id)
     {
         return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorProdutosEndereco(id));
     }
     
-    public async Task<FornecedorViewModel> ObterFornecedoEndereco(Guid id)
+    private async Task<FornecedorViewModel> ObterFornecedoEndereco(Guid id)
     {
         return _mapper.Map<FornecedorViewModel>(await _fornecedorRepository.ObterFornecedorEndereco(id));
     }
